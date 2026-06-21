@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足球竞彩 · 稳定入口与页面说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 深色头图 – 低饱和背景，强调视觉静默 */
+        .hero {
+            background: #0f172a;
+            background-image: radial-gradient(circle at 20% 40%, #1e293b 0%, #0b1120 100%);
+            color: #e2e8f0;
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            opacity: 0.35;
+        }
+
+        .hero h1 {
+            font-size: 2.25rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero p {
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* 承接段落 – 信息密度高，自然引出链接 */
+        .intro {
+            margin-bottom: 2.8rem;
+        }
+
+        .intro p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .intro p:first-child {
+            font-size: 1.08rem;
+            border-left: 3px solid #3b82f6;
+            padding-left: 1rem;
+            background: #f1f5f9;
+            border-radius: 0 4px 4px 0;
+            margin-left: -1rem;
+            padding: 0.75rem 1rem;
+        }
+
+        .intro a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .intro a:hover {
+            border-bottom-color: #2563eb;
+            color: #1e40af;
+        }
+
+        /* 特点列表 – 卡片风格，浅色正文区 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .feature-icon {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #3b82f6;
+            border-radius: 50%;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        /* 温和结尾 – 场景提示 + FAQ 摘要 */
+        .closing {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem 1.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .closing h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .closing p {
+            color: #334155;
+            margin-bottom: 0.9rem;
+        }
+
+        .closing p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-mini {
+            margin-top: 1.5rem;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 1.25rem;
+        }
+
+        .faq-mini dt {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        .faq-mini dd {
+            margin-bottom: 0.9rem;
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .faq-mini dd:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            margin-top: 1.2rem;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2563eb;
+            background: transparent;
+            border: 1px solid #2563eb;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .footnote a {
+            color: #475569;
+            text-decoration: none;
+            border-bottom: 1px dotted #94a3b8;
+        }
+
+        .footnote a:hover {
+            color: #0f172a;
+            border-bottom-color: #0f172a;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 2.8rem 1rem 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 1.8rem 1rem 3rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .closing {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .intro p:first-child {
+                margin-left: 0;
+                border-left-width: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>足球竞彩 · 稳定入口</h1>
+    <p>从赛事数据到页面呈现，保持清晰、直接、可靠的信息路径。</p>
+</section>
+
+<div class="container">
+
+    <!-- 故事叙述式开场 + 承接段落 -->
+    <div class="intro">
+        <p>
+            页面说明不是装饰。对于关注 <a href="https://cn-pc-footballbet.com">足球竞彩</a> 的用户而言，
+            一个结构稳定、加载迅速的入口，往往比花哨的界面更能建立信任。
+            竞猜前的信息整理、数据查阅、赔率对比——每个环节都需要干净且一致的操作环境。
+        </p>
+        <p>
+            这个页面的设计逻辑很简单：减少跳转中的噪音，突出真正需要关注的内容。
+            无论是赛前分析还是赛后复盘，核心始终围绕赛事本身，而非界面干扰。
+        </p>
+        <p>
+            以下列出几个经常被提及的场景，以及页面实际提供的支持方式。
+        </p>
+    </div>
+
+    <!-- 特点列表：卡片式，四个方向 -->
+    <div class="features">
+        <div class="feature-card">
+            <h3><span class="feature-icon"></span>赛前数据聚合</h3>
+            <p>主流联赛赔率、伤停信息、天气影响，统一入口查看，减少反复跳转的时间成本。</p>
+        </div>
+        <div class="feature-card">
+            <h3><span class="feature-icon"></span>稳定页面结构</h3>
+            <p>减少动态加载带来的布局偏移，确保赔率更新时列表不闪动，信息始终可读。</p>
+        </div>
+        <div class="feature-card">
+            <h3><span class="feature-icon"></span>低干扰交互</h3>
+            <p>无自动弹出、无频繁刷新提示，每次操作都在预期之内，适合需要长时间浏览的场景。</p>
+        </div>
+        <div class="feature-card">
+            <h3><span class="feature-icon"></span>跨终端适配</h3>
+            <p>从桌面到移动端，内容排版按比例缩放，核心功能在窄屏下依然可用。</p>
+        </div>
+    </div>
+
+    <!-- 温和结尾：场景说明 + FAQ 摘要 -->
+    <div class="closing">
+        <h2>常见使用场景与说明</h2>
+        <p>
+            许多用户习惯在赛前 2–3 小时集中查看对阵信息与即时赔率。
+            页面在设计时优先考虑了此时段的访问密度，避免因资源加载延迟导致信息滞后。
+            同时保留基础历史数据供对比——不过度堆积，也不遗漏关键字段。
+        </p>
+        <p>
+            如果你对某场赛事的盘口变化有疑问，或想了解某项统计指标的定义，
+            页面并未堆砌解释层，而是尽量让数据本身说话。
+            必要时可以借助站内的搜索入口快速定位具体场次。
+        </p>
+
+        <dl class="faq-mini">
+            <dt>▸ 页面是否实时更新赔率？</dt>
+            <dd>数据推送间隔约为 15–30 秒，具体取决于联赛级别。重大赛事期间会适当缩短更新窗口。</dd>
+            <dt>▸ 移动端与桌面端内容一致吗？</dt>
+            <dd>核心数据字段完全一致，仅在宽屏下多列显示更多历史对比，窄屏则改为纵向堆叠。</dd>
+            <dt>▸ 如何回到主入口？</dt>
+            <dd>页面顶部以及本站所有子页面均保留指向 <a href="https://cn-pc-footballbet.com" style="color:#2563eb; text-decoration:underline; font-weight:500;">足球竞彩</a> 的导航链接，无需通过浏览器回退。</dd>
+        </dl>
+
+        <a href="https://cn-pc-footballbet.com" class="btn-outline">足球竞彩</a>
+    </div>
+
+    <!-- 脚注 – 温和收尾 -->
+    <div class="footnote">
+        <p>页面内容仅供信息参考 · 请理性看待赛事竞猜 · <a href="https://cn-pc-footballbet.com">足球竞彩</a></p>
+    </div>
+
+</div>
+
+</body>
+</html>
